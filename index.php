@@ -7,10 +7,14 @@
  * This file is a part of squid-imposter project.
  * @author Krzysztof Kotowicz <kkotowicz at gmail dot com>
  */
+if (empty($_GET['site'])) {
+    echo 'This file should not be requested directly';
+    die();
+}
 $_GET['site'] = preg_replace('/[^a-z0-9_\.-]/i', '', $_GET['site']);
 
-$standard_prefix = dirname(__FILE__) . '/' . $_GET['site'];
-$default_prefix = dirname(__FILE__) . '/default';
+$standard_prefix = dirname(__FILE__) . '/payloads/' . $_GET['site'];
+$default_prefix = dirname(__FILE__) . '/payloads/default';
 
 $output = "Squid-imposter could not find files for site: {$_GET['site']}!";
 
